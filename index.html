@@ -184,15 +184,30 @@ footer li{
 }
 
 .galeria-item:hover{
+
     transform:translateY(-8px);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.20);
+
 }
 
 .galeria-item img{
+
     width:100%;
     height:350px;
     object-fit:contain;
     background:#fff;
     padding:8px;
+    transition:
+        transform .4s ease,
+        filter .4s ease;
+
+}
+
+.galeria-item:hover img{
+    transform:scale(1.15);
+    filter:brightness(1.05);
+
 }
 
 .galeria-item h3{
@@ -260,17 +275,31 @@ nav a:hover{
     margin:auto;
 }
 
-.galeria-item{
+.galeria-item img{
+    width:100%;
+    height:350px;
+    object-fit:contain;
     background:#fff;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    transition:.3s;
-    min-height:500px;
+    padding:8px;
+
+    transition:
+        transform .4s ease,
+        filter .4s ease;
+}
+
+.galeria-item:hover img{
+
+    transform:scale(1.15);
+    filter:brightness(1.05);
+
 }
 
 .galeria-item:hover{
+
     transform:translateY(-8px);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.20);
+
 }
 
 .galeria-item img{
@@ -345,7 +374,96 @@ nav a:hover{
     margin:auto;
     margin-bottom:40px;
 }
+/* =========================
+   SIMULADOR ER
+========================= */
 
+#laboratorio .card{
+
+    max-width:1100px;
+    margin:30px auto;
+    padding:40px;
+    border-radius:20px;
+    background:linear-gradient(
+        135deg,
+        #1F3C5B,
+        #325D88
+    );
+
+    color:white;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+    transition:.3s;
+}
+
+#laboratorio .card:hover{
+
+    transform:translateY(-5px);
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.3);
+}
+
+#laboratorio .card h3{
+
+    color:white;
+    font-size:2rem;
+    margin-bottom:20px;
+    border-bottom:
+    2px solid rgba(255,255,255,.2);
+    padding-bottom:15px;
+}
+
+#laboratorio .card p{
+
+    color:white;
+    font-size:1.2rem;
+}
+
+#laboratorio input{
+
+    width:60%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    outline:none;
+    margin-right:15px;
+    margin-top:15px;
+}
+
+#laboratorio button{
+
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    background:linear-gradient(
+        135deg,
+        #2EA8FF,
+        #0066FF
+    );
+
+    transition:.3s;
+}
+
+#laboratorio button:hover{
+
+    transform:scale(1.05);
+    box-shadow:
+    0 0 20px rgba(46,168,255,.6);
+}
+
+#resultadoER{
+
+    margin-top:20px;
+
+    font-size:1.2rem;
+
+    font-weight:bold;
+}
 /* =========================
    ACORDEÓN ANIMADO
 ========================= */
@@ -436,6 +554,33 @@ footer li{
 nav a:hover{
     color:#d093dd;
     transition:.3s;
+}
+
+#lightbox{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+#lightbox img{
+    max-width:90%;
+    max-height:90%;
+}
+
+#lightbox span{
+    position:absolute;
+    top:20px;
+    right:40px;
+    color:white;
+    font-size:50px;
+    cursor:pointer;
 }
 
 /* =========================
@@ -538,6 +683,19 @@ nav a:hover{
         text-align:center;
         padding:10px 0;
     }
+    #laboratorio input{
+
+    width:100%;
+
+    margin-bottom:15px;
+
+    margin-right:0;
+}
+
+#laboratorio button{
+
+    width:100%;
+}
 }
 
 </style>
@@ -1597,7 +1755,6 @@ Teoría de la computabilidad y análisis de algoritmos.
 
 </div>
 </section>
-
 <section id="galeria">
 
     <h2>Galería Académica</h2>
@@ -1605,32 +1762,32 @@ Teoría de la computabilidad y análisis de algoritmos.
     <div class="galeria-grid">
 
         <div class="galeria-item">
-            <img src="T1.png" alt="Teoría de Lenguajes Formales">
+            <img src="T1.png" alt="Teoría de Lenguajes Formales" onclick="abrirImagen(this.src)">
             <h3>Teoría de Lenguajes Formales</h3>
         </div>
 
         <div class="galeria-item">
-            <img src="T2.png" alt="Expresiones Regulares">
+            <img src="T2.png" alt="Expresiones Regulares" onclick="abrirImagen(this.src)">
             <h3>Expresiones Regulares</h3>
         </div>
 
         <div class="galeria-item">
-            <img src="T3.png" alt="Autómatas Finitos">
+            <img src="T3.png" alt="Autómatas Finitos" onclick="abrirImagen(this.src)">
             <h3>Autómatas Finitos</h3>
         </div>
 
         <div class="galeria-item">
-            <img src="T4.png" alt="Análisis Léxico">
+            <img src="T4.png" alt="Análisis Léxico" onclick="abrirImagen(this.src)">
             <h3>Análisis Léxico</h3>
         </div>
 
         <div class="galeria-item">
-            <img src="T5.png" alt="Análisis Sintáctico">
+            <img src="T5.png" alt="Análisis Sintáctico" onclick="abrirImagen(this.src)">
             <h3>Análisis Sintáctico</h3>
         </div>
 
         <div class="galeria-item">
-            <img src="T6.png" alt="Máquinas de Turing">
+            <img src="T6.png" alt="Máquinas de Turing" onclick="abrirImagen(this.src)">
             <h3>Máquinas de Turing</h3>
         </div>
 
@@ -1648,7 +1805,7 @@ de Expresiones Regulares y Autómatas Finitos.
 </p>
 <div class="card">
 
-<h3>Simulador de Expresiones Regulares</h3>
+<h3>🧪 Simulador de Expresiones Regulares</h3>
 
 <p>
 Ingrese una cadena formada únicamente por los símbolos a y b.
@@ -1730,6 +1887,15 @@ PMBOK® Guide Quinta Edición.
     © 2026 Lenguajes y Autómatas I | Martínez Carrillo Aylin |
     Solis Nava Lilia Xochitl
 </div>
+
+<div id="lightbox">
+
+    <span onclick="cerrarImagen()">&times;</span>
+
+    <img id="imagenGrande">
+
+</div>
+
 <script>
 function toggleMenu(){
     document.getElementById("menu").classList.toggle("active");
@@ -1801,25 +1967,50 @@ document.querySelectorAll('.tema').forEach((tema) => {
 });
 
 function validarER(){
-let texto =
-document.getElementById("cadenaER").value;
-let patron =
-/^[ab]+$/;
-let resultado =
-document.getElementById("resultadoER");
-if(patron.test(texto)){
-resultado.innerHTML =
-"✅ Cadena válida";
-resultado.style.color =
-"green";
+    let texto =
+    document.getElementById("cadenaER").value;
+    let patron =
+    /^[ab]+$/;
+    let resultado =
+    document.getElementById("resultadoER");
+    if(patron.test(texto)){
+        resultado.innerHTML =
+        "✅ Cadena válida";
+        resultado.style.color =
+        "green";
+    }
+    else{
+        resultado.innerHTML =
+        "❌ Cadena inválida";
+        resultado.style.color =
+        "red";
+    }
 }
-else{
-resultado.innerHTML =
-"❌ Cadena inválida";
-resultado.style.color =
-"red";
+function abrirImagen(src){
+
+    document.getElementById("lightbox").style.display =
+    "flex";
+
+    document.getElementById("imagenGrande").src =
+    src;
 }
+
+function cerrarImagen(){
+
+    document.getElementById("lightbox").style.display =
+    "none";
 }
+
+document.getElementById("lightbox")
+.addEventListener("click", function(e){
+
+    if(e.target.id === "lightbox"){
+
+        cerrarImagen();
+
+    }
+
+});
 </script>
 </body>
 </html>
