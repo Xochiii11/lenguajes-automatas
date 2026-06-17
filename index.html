@@ -47,25 +47,33 @@ header{
 }
 
 #menu{
-    position:absolute;
-    top:100%;
-    right:10px;
-    width:260px;
-    background:#002c54;
-    border-radius:15px;
-    padding:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.3);
-    max-height:0;
-    overflow:hidden;
-    opacity:0;
-    transition:
-        max-height .4s ease,
-        opacity .3s ease;
+
+    position:fixed;
+    top:0;
+    right:0;
+    width:380px;
+    max-width:85%;
+    height:100vh;
+    background:linear-gradient(
+        135deg,
+        #003A70,
+        #325D88
+    );
+    transform:translateX(100%);
+    transition:.45s ease;
+    padding-top:100px;
+    box-shadow:
+    -15px 0 35px rgba(0,0,0,.35);
+    z-index:9999;
+    position:fixed;
+    top:0;
+    right:0;
+    pointer-events:auto;
+
 }
 
 #menu.active{
-    max-height:500px;
-    opacity:1;
+    transform:translateX(0);
 }
 
 #menu ul{
@@ -79,20 +87,37 @@ header{
 
 #menu li{
     width:100%;
+    opacity:0;
+    transform:translateX(30px);
+    transition:.4s;
+}
+
+#menu.active li{
+
+    opacity:1;
+    transform:translateX(0);
+
 }
 
 #menu a{
+
     display:block;
     width:100%;
-    padding:10px 15px;
+    padding:18px 25px;
     color:white;
     text-decoration:none;
-    border-radius:10px;
+    font-size:1.15rem;
+    border-left:4px solid transparent;
     transition:.3s;
+
 }
 
 #menu a:hover{
-    background:rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.08);
+    border-left:4px solid #7EE7FF;
+    padding-left:35px;
+
 }
 
 nav a{color:#fff;text-decoration:none}
@@ -606,6 +631,25 @@ nav a:hover{
     font-size:50px;
     cursor:pointer;
 }
+#overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.15);
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transition:.3s;
+    z-index:900;
+}
+
+#overlay.active{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+
 
 /* =========================
    RESPONSIVE TABLET
@@ -689,12 +733,10 @@ nav a:hover{
     
     #menu{
         width:280px;
-        right:10px;
-        margin-top:10px;
+        right:0;
     }
     #menu.active{
-    max-height:600px;
-    opacity:1;
+        transform:translateX(0);
     }
 
     #menu ul{
@@ -702,9 +744,7 @@ nav a:hover{
         flex-direction:column;
         gap:10px;
         align-items:flex-start;
-        background:#002c54;
-        padding:15px;border-radius:15px;
-        box-shadow:0 0 20px rgba(126,231,255,.5);
+        padding:15px;
     }
 
     #menu ul li{    
@@ -1925,17 +1965,8 @@ PMBOK® Guide Quinta Edición.
     <img id="imagenGrande">
 
 </div>
-
+<div id="overlay"></div>
 <script>
-function toggleMenu(){
-    document.getElementById("menu").classList.toggle("active");
-}
-
-document.querySelectorAll("#menu a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("menu").classList.remove("active");
-    });
-});
 
 /* ACORDEÓN TEMAS PRINCIPALES */
 
@@ -2039,6 +2070,51 @@ document.getElementById("lightbox")
         cerrarImagen();
 
     }
+
+});
+function toggleMenu(){
+
+    document
+    .getElementById("menu")
+    .classList.toggle("active");
+
+    document
+    .getElementById("overlay")
+    .classList.toggle("active");
+
+}
+
+/* CERRAR AL TOCAR EL OVERLAY */
+
+document
+.getElementById("overlay")
+.addEventListener("click", () => {
+
+    document
+    .getElementById("menu")
+    .classList.remove("active");
+
+    document
+    .getElementById("overlay")
+    .classList.remove("active");
+
+});
+
+/* CERRAR AL SELECCIONAR UNA OPCIÓN */
+
+document.querySelectorAll("#menu a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        document
+        .getElementById("menu")
+        .classList.remove("active");
+
+        document
+        .getElementById("overlay")
+        .classList.remove("active");
+
+    });
 
 });
 </script>
